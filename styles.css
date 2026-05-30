@@ -1,0 +1,921 @@
+/* ==========================================================================
+   SHOURYA PUNJ — PERSONAL SITE
+   Aesthetic: warm brutalist (cream + ink + rust accent)
+   Layout:    single-page scroll with sticky side nav + section labels
+   --------------------------------------------------------------------------
+   Sections in this file:
+     1. Design tokens (CSS custom properties)
+     2. Base reset + global typography
+     3. Decorative layers (grain, marquee)
+     4. Side nav
+     5. Section scaffolding (label, header, title)
+     6. Hero
+     7. About
+     8. Experience (table rows)
+     9. Projects (cards)
+    10. Contact + footer
+    11. Animations + reveal states
+    12. Responsive breakpoints
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* Palette — cream + ink + a single rust accent. */
+  --cream:       #f0ede5;
+  --cream-deep: #e6e1d4;   /* subtle deeper cream for hover surfaces */
+  --ink:         #1a1a1a;
+  --ink-soft:    #1a1a1acc; /* 80% ink for body copy */
+  --ink-dim:     #1a1a1a80; /* 50% ink for metadata */
+  --ink-line:    #1a1a1a33; /* 20% ink for hairlines */
+  --accent:      #c2410c;   /* rust */
+  --accent-deep: #9a3409;
+
+  /* Type */
+  --font-display: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Spacing / radius / borders */
+  --border-thick: 1.5px solid var(--ink);
+  --border-thin:  1px solid var(--ink-line);
+  --shadow-card:  6px 6px 0 var(--ink);
+  --shadow-card-hover: 3px 3px 0 var(--ink);
+
+  /* Layout */
+  --content-max: 1240px;
+  --gutter:      clamp(20px, 4vw, 56px);
+  --side-nav-w:  clamp(0px, 12vw, 140px); /* reserved column for side labels */
+}
+
+
+/* ==========================================================================
+   2. BASE + GLOBAL TYPE
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--ink); color: var(--cream); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* Utility: monospace label text */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.mono--dim { color: var(--ink-dim); }
+
+
+/* ==========================================================================
+   3. DECORATIVE LAYERS
+   ========================================================================== */
+
+/* Subtle paper-grain overlay — fixed, ignores pointer */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
+}
+
+/* Marquee ticker at the very top of the page */
+.marquee {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--accent);
+  color: var(--cream);
+  border-bottom: var(--border-thick);
+  overflow: hidden;
+}
+.marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 10px 0;
+  white-space: nowrap;
+  animation: marquee 38s linear infinite;
+  will-change: transform;
+}
+.marquee__item,
+.marquee__dot {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.marquee__dot { opacity: 0.6; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* track holds 2x content */
+}
+
+
+/* ==========================================================================
+   4. SIDE NAV
+   Sticky strip of section labels in the left margin. Hidden on small screens.
+   ========================================================================== */
+.side-nav {
+  position: fixed;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: none; /* shown via media query */
+}
+.side-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.side-nav a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  position: relative;
+  padding-left: 18px;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+.side-nav a::before {
+  /* small square indicator */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  transform: translateY(-50%);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.side-nav a:hover {
+  color: var(--ink);
+  padding-left: 22px;
+}
+.side-nav a.is-active {
+  color: var(--ink);
+  font-weight: 700;
+}
+.side-nav a.is-active::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+
+/* ==========================================================================
+   5. SECTION SCAFFOLDING
+   ========================================================================== */
+main {
+  position: relative;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding: 120px 0 80px;
+  border-bottom: var(--border-thin);
+}
+.section:last-of-type { border-bottom: none; }
+
+/* Section label that sits at the top-left of every section */
+.section__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding-bottom: 14px;
+  margin-bottom: 48px;
+  border-bottom: var(--border-thin);
+}
+
+/* Standard section heading block */
+.section__header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   6. HERO
+   ========================================================================== */
+.section--hero {
+  padding-top: 80px;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: var(--border-thin);
+  margin-bottom: 40px;
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  /* Min lowered so "SHOURYA" fits inside ~320px viewports without clipping. */
+  font-size: clamp(56px, 16vw, 240px);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  margin: 24px 0 36px;
+}
+
+/* Blinking cursor next to the name */
+.cursor {
+  display: inline-block;
+  color: var(--accent);
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+.hero__tagline {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  max-width: 800px;
+  margin: 0 0 64px;
+}
+.hero__tagline em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hero__meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: var(--border-thick);
+  border-bottom: var(--border-thick);
+}
+.hero__meta-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border-right: var(--border-thin);
+}
+.hero__meta-cell:last-child { border-right: none; }
+
+/* Pulsing dot next to "AVAILABLE" */
+.dot-live {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 6px;
+  animation: pulse 1.8s ease-in-out infinite;
+  vertical-align: middle;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.8); }
+}
+
+
+/* ==========================================================================
+   7. ABOUT
+   ========================================================================== */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.about__copy .lead {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  margin: 0 0 28px;
+}
+.about__copy p {
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+  max-width: 56ch;
+}
+
+/* Right column wrapper: holds portrait + stack panel */
+.about__side {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Portrait — straight bordered block matching the other panels */
+.about__portrait {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.about__portrait-frame {
+  position: relative;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-card);
+  background: var(--cream-deep);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about__portrait-frame:hover {
+  /* Same nudged-shadow move as the project cards on hover */
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-card-hover);
+}
+.about__portrait-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Subtle desaturation that lifts on hover */
+  filter: grayscale(0.25) contrast(1.02);
+  transition: filter 0.4s ease;
+}
+.about__portrait-frame:hover img {
+  filter: grayscale(0) contrast(1);
+}
+
+.about__portrait-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 4px;
+}
+
+.about__stack {
+  border: var(--border-thick);
+  background: var(--cream);
+  box-shadow: var(--shadow-card);
+  padding: 8px 0;
+}
+.stack-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  padding: 14px 22px;
+  border-bottom: var(--border-thin);
+}
+.stack-row:last-child { border-bottom: none; }
+
+
+/* ==========================================================================
+   8. EXPERIENCE — TABLE-STYLE ROWS
+   ========================================================================== */
+.exp-table {
+  border-top: var(--border-thick);
+  border-bottom: var(--border-thick);
+}
+
+.exp-row {
+  display: grid;
+  grid-template-columns: 140px 1.4fr 1fr 60px;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 8px;
+  /* Reset native <button> chrome — these rows are buttons now. */
+  border: none;
+  border-bottom: var(--border-thin);
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+.exp-row:last-child { border-bottom: none; }
+.exp-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.exp-row--head {
+  padding: 12px 8px;
+  background: transparent;
+  cursor: default;
+  color: var(--ink-dim);
+}
+
+.exp-row__role {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.exp-row__company {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.exp-row__arrow {
+  text-align: right;
+  font-size: 28px;
+  font-weight: 500;
+  transition: transform 0.3s ease, color 0.25s ease;
+}
+.exp-row__note {
+  grid-column: 2 / 4;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  margin: 6px 0 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+/* Hover state: subtle inset, reveal note, slide arrow */
+.exp-row:hover {
+  background: var(--cream-deep);
+  padding-left: 24px;
+}
+.exp-row:hover .exp-row__arrow {
+  transform: translateX(8px);
+  color: var(--accent);
+}
+.exp-row:hover .exp-row__note {
+  max-height: 60px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* --- Expanded row detail (revealed via click; toggled by JS) ---------------
+   Lives in its own grid cell that spans the role + company columns. */
+.exp-row__detail {
+  grid-column: 2 / 5;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.3s ease,
+    margin 0.3s ease;
+}
+.exp-row.is-open {
+  background: var(--cream-deep);
+  padding-left: 24px;
+}
+.exp-row.is-open .exp-row__note {
+  /* Keep the one-liner visible alongside the deeper detail */
+  max-height: 60px;
+  opacity: 1;
+  margin-top: 10px;
+}
+.exp-row.is-open .exp-row__detail {
+  max-height: 420px;
+  opacity: 1;
+  margin-top: 14px;
+}
+.exp-row.is-open .exp-row__arrow {
+  /* Arrow rotates from → to ↓ to indicate "open" */
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+
+.exp-row__bullets {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+.exp-row__bullets li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.exp-row__bullets li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.exp-row__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.exp-row__tags span {
+  padding: 3px 8px;
+  border: 1px solid var(--ink);
+  font-size: 10px;
+}
+
+
+/* ==========================================================================
+   9. PROJECTS
+   Bordered cards in a 2-col grid. Card flips to inverted ink on hover.
+   ========================================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.project-card {
+  position: relative;
+  background: var(--cream);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 360px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+  cursor: pointer;
+  outline: none;
+}
+.project-card:hover,
+.project-card:focus-visible,
+.project-card.is-open {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-card-hover);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* When inverted (hover or open), .mono--dim labels need a cream-dim
+   instead of ink-dim or they go invisible against the dark background. */
+.project-card:hover .mono--dim,
+.project-card:focus-visible .mono--dim,
+.project-card.is-open .mono--dim {
+  color: rgba(240, 237, 229, 0.55);
+}
+
+/* Numbered badge — top-left, circular rust */
+.project-card__badge {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--cream);
+  border: var(--border-thick);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  display: grid;
+  place-items: center;
+  transform: rotate(-6deg);
+  transition: transform 0.3s ease;
+}
+.project-card:hover .project-card__badge,
+.project-card.is-open .project-card__badge {
+  transform: rotate(0) scale(1.06);
+}
+
+.project-card__tag {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  font-size: 10px;
+}
+
+.project-card__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(32px, 3.4vw, 44px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 4px 0 0;
+}
+
+.project-card__desc {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.project-card__stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.project-card__stack li {
+  font-size: 10px;
+  padding: 4px 8px;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+.project-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid currentColor;
+  padding-top: 16px;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+.project-card__arrow {
+  font-size: 22px;
+  /* Arrow is "↓" by default; rotates 180deg → "↑" when card opens. */
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+.project-card:hover .project-card__arrow {
+  transform: translateY(3px);
+}
+.project-card.is-open .project-card__arrow {
+  transform: rotate(180deg);
+}
+
+/* --- Expanded card detail (revealed via click; toggled by JS) -------------
+   Sits below the footer and slides open inside the card itself. */
+.project-card__detail {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.3s ease,
+    margin 0.3s ease,
+    padding 0.3s ease,
+    border-color 0.3s ease;
+  border-top: 1px solid transparent;
+  margin-top: 0;
+  padding-top: 0;
+}
+.project-card.is-open .project-card__detail {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top-color: currentColor;
+}
+.project-card__detail-section { margin-bottom: 16px; }
+.project-card__detail-section:last-child { margin-bottom: 0; }
+.project-card__detail-section > .mono {
+  display: block;
+  margin-bottom: 8px;
+}
+.project-card__detail-section p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+.project-card__detail-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.project-card__detail-section ul li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.project-card__detail-section ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   10. CONTACT + FOOTER
+   ========================================================================== */
+.contact__intro {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.4;
+  max-width: 56ch;
+  margin: 0 0 48px;
+  color: var(--ink-soft);
+}
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  /* Allow wrap so the @ can drop to a new line on small viewports. */
+  flex-wrap: wrap;
+  max-width: 100%;
+  font-family: var(--font-display);
+  font-weight: 900;
+  /* Lower min so the address doesn't clip on ~320–400px viewports. */
+  font-size: clamp(28px, 7vw, 96px);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  padding-bottom: 12px;
+  border-bottom: var(--border-thick);
+  /* Last-resort wrapping if the address still exceeds the line. */
+  overflow-wrap: anywhere;
+  transition: color 0.25s ease, letter-spacing 0.3s ease;
+}
+.contact__email:hover {
+  color: var(--accent);
+  letter-spacing: -0.035em;
+}
+.contact__at { color: var(--accent); }
+.contact__arrow {
+  font-size: 0.7em;
+  transition: transform 0.3s ease;
+}
+.contact__email:hover .contact__arrow {
+  transform: translate(8px, -8px);
+}
+
+.contact__socials {
+  list-style: none;
+  margin: 56px 0 80px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.contact__socials a {
+  position: relative;
+  padding-bottom: 2px;
+}
+.contact__socials a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.contact__socials a:hover::after { transform: scaleX(1); }
+
+.footer {
+  border-top: var(--border-thin);
+  padding: 24px 0 16px;
+}
+.footer__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+
+/* ==========================================================================
+   11. SCROLL REVEAL ANIMATIONS
+   Triggered by .is-revealed class added in script.js
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children of project grid + experience table */
+.projects-grid .reveal:nth-child(1) { transition-delay: 0.05s; }
+.projects-grid .reveal:nth-child(2) { transition-delay: 0.15s; }
+.projects-grid .reveal:nth-child(3) { transition-delay: 0.25s; }
+.projects-grid .reveal:nth-child(4) { transition-delay: 0.35s; }
+
+
+/* ==========================================================================
+   12. RESPONSIVE
+   ========================================================================== */
+
+/* Show side-nav on wider screens (room for it to live in the gutter) */
+@media (min-width: 1100px) {
+  .side-nav { display: block; }
+  main { padding-left: calc(var(--gutter) + var(--side-nav-w)); }
+}
+
+/* Tablet */
+@media (max-width: 880px) {
+  .about__grid { grid-template-columns: 1fr; gap: 36px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .hero__meta { grid-template-columns: repeat(2, 1fr); }
+  .hero__meta-cell:nth-child(2) { border-right: none; }
+  .hero__meta-cell:nth-child(1),
+  .hero__meta-cell:nth-child(2) { border-bottom: var(--border-thin); }
+
+  .exp-row {
+    grid-template-columns: 90px 1fr 40px;
+    gap: 16px;
+  }
+  .exp-row__company {
+    grid-column: 2 / 3;
+    font-size: 16px;
+    color: var(--ink-dim);
+  }
+  .exp-row--head .exp-row__company { display: none; }
+  .exp-row__note { grid-column: 2 / 4; }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .section { padding: 80px 0 56px; }
+  .hero__top { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero__meta { grid-template-columns: 1fr; }
+  .hero__meta-cell { border-right: none; border-bottom: var(--border-thin); }
+  .hero__meta-cell:last-child { border-bottom: none; }
+  .stack-row { grid-template-columns: 1fr; gap: 4px; }
+  .footer__row { flex-direction: column; align-items: flex-start; }
+  .project-card__badge { width: 44px; height: 44px; top: -14px; left: -14px; }
+
+  /* Tighten the hero name so it never clips on narrow viewports. */
+  .hero__name { letter-spacing: -0.04em; }
+
+  /* Email: shrink letter-spacing + arrow size so the address always fits. */
+  .contact__email { gap: 6px; letter-spacing: -0.03em; }
+  .contact__arrow { font-size: 0.55em; }
+}
+
+/* Reduced motion: kill animations for users who request it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
