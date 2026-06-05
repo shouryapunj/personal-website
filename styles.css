@@ -884,6 +884,15 @@ main {
     .exp-row__note {
         grid-column: 2 / 4;
     }
+    /* On mobile the detail stacks into a narrow column and wraps far taller
+       than the desktop caps, so the fixed max-heights clip it. Open them up. */
+    .exp-row:hover .exp-row__note,
+    .exp-row.is-open .exp-row__note {
+        max-height: 160px;
+    }
+    .exp-row.is-open .exp-row__detail {
+        max-height: 1600px;
+    }
 }
 
 @media (max-width: 560px) {
