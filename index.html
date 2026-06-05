@@ -1,554 +1,858 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shourya Punj — Software Engineer</title>
-  <meta
-    name="description"
-    content="Shourya Punj — software engineer designing and developing experiences that make people's lives simple."
-  />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shourya Punj — Software Engineer</title>
+        <meta
+            name="description"
+            content="Shourya Punj — software engineer designing and developing experiences that make people's lives simple."
+        />
 
-  <!-- Fonts: Inter Tight for display + body, JetBrains Mono for metadata -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <!-- ============================================================
-       TOP MARQUEE TICKER
-       Continuously scrolling label across the very top of the page.
-       Pure CSS animation, doubled content for seamless loop.
-       ============================================================ -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span class="marquee__item">SHOURYA PUNJ</span>
-      <span class="marquee__dot">●</span>
-      <span class="marquee__item">SOFTWARE ENGINEER</span>
-      <span class="marquee__dot">●</span>
-      <span class="marquee__item">DESIGN &amp; DEVELOPMENT</span>
-      <span class="marquee__dot">●</span>
-      <span class="marquee__item">AVAILABLE 2026</span>
-      <span class="marquee__dot">●</span>
-      <!-- Duplicated for seamless scrolling -->
-      <span class="marquee__item">SHOURYA PUNJ</span>
-      <span class="marquee__dot">●</span>
-      <span class="marquee__item">SOFTWARE ENGINEER</span>
-      <span class="marquee__dot">●</span>
-      <span class="marquee__item">DESIGN &amp; DEVELOPMENT</span>
-      <span class="marquee__dot">●</span>
-      <span class="marquee__item">AVAILABLE 2026</span>
-      <span class="marquee__dot">●</span>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       SIDE NAV — sticky section index in the left margin.
-       JS updates the .is-active class as sections enter view.
-       ============================================================ -->
-  <nav class="side-nav" aria-label="Section index">
-    <ul>
-      <li><a href="#hero" data-section="hero">01 / INDEX</a></li>
-      <li><a href="#about" data-section="about">02 / ABOUT</a></li>
-      <li><a href="#experience" data-section="experience">03 / WORK</a></li>
-      <li><a href="#projects" data-section="projects">04 / PROJECTS</a></li>
-      <li><a href="#contact" data-section="contact">05 / CONTACT</a></li>
-    </ul>
-  </nav>
-
-  <!-- Paper grain overlay (decorative) -->
-  <div class="grain" aria-hidden="true"></div>
-
-  <main>
-    <!-- ============================================================
-         01 — HERO
-         Massive name, tagline, mono metadata strip with blinking cursor.
-         ============================================================ -->
-    <section id="hero" class="section section--hero">
-      <div class="section__label">01 / INDEX</div>
-
-      <div class="hero__top">
-        <span class="mono">PORTFOLIO — 2026 EDITION</span>
-        <span class="mono">[ SCROLL ↓ ]</span>
-      </div>
-
-      <h1 class="hero__name">
-        SHOURYA<br />PUNJ<span class="cursor" aria-hidden="true">_</span>
-      </h1>
-
-      <p class="hero__tagline">
-        I design and develop experiences that make people's
-        <em>lives simple.</em>
-      </p>
-
-      <div class="hero__meta">
-        <div class="hero__meta-cell">
-          <span class="mono mono--dim">ROLE</span>
-          <span class="mono">SOFTWARE ENGINEER</span>
-        </div>
-        <div class="hero__meta-cell">
-          <span class="mono mono--dim">FOCUS</span>
-          <span class="mono">FULL-STACK / PRODUCT</span>
-        </div>
-        <div class="hero__meta-cell">
-          <span class="mono mono--dim">STATUS</span>
-          <span class="mono"><span class="dot-live"></span> AVAILABLE</span>
-        </div>
-        <div class="hero__meta-cell">
-          <span class="mono mono--dim">YEAR</span>
-          <span class="mono">2026</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         02 — ABOUT
-         Two-column: paragraph on left, photo + mono stack on right.
-         ============================================================ -->
-    <section id="about" class="section section--about">
-      <div class="section__label">02 / ABOUT</div>
-
-      <header class="section__header">
-        <span class="mono mono--dim">/ 02</span>
-        <h2 class="section__title">ABOUT.</h2>
-      </header>
-
-      <div class="about__grid">
-        <div class="about__copy">
-          <p class="lead">
-            I'm a software engineer who cares about the seams between design
-            and engineering — the small details that make a product feel
-            considered instead of assembled.
-          </p>
-          <p>
-            Over the last few years I've built data platforms, IoT pipelines,
-            e-commerce systems, and internal tools across companies large and
-            small. I like problems where the constraints are messy and the
-            user-facing surface still has to feel calm.
-          </p>
-          <p>
-            Outside of work I tinker with side projects, read about
-            type systems, and look for excuses to write more frontend.
-          </p>
-        </div>
-
-        <div class="about__side">
-          <!-- Portrait: bordered, slightly rotated, with mono caption -->
-          <figure class="about__portrait">
-            <div class="about__portrait-frame">
-              <img
-                src="Shourya Picture.png"
-                alt="Portrait of Shourya Punj"
-                loading="lazy"
-              />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                <div class="marquee__group">
+                    <span class="marquee__item">SHOURYA PUNJ</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">SOFTWARE ENGINEER</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">DESIGN &amp; DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AGENTIC DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AVAILABLE 2026</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">SHOURYA PUNJ</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">SOFTWARE ENGINEER</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">DESIGN &amp; DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AGENTIC DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AVAILABLE 2026</span>
+                    <span class="marquee__dot">●</span>
+                </div>
+                <div class="marquee__group" aria-hidden="true">
+                    <span class="marquee__item">SHOURYA PUNJ</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">SOFTWARE ENGINEER</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">DESIGN &amp; DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AGENTIC DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AVAILABLE 2026</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">SHOURYA PUNJ</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">SOFTWARE ENGINEER</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">DESIGN &amp; DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AGENTIC DEVELOPMENT</span>
+                    <span class="marquee__dot">●</span>
+                    <span class="marquee__item">AVAILABLE 2026</span>
+                    <span class="marquee__dot">●</span>
+                </div>
             </div>
-            <figcaption class="about__portrait-caption">
-              <span class="mono mono--dim">/ FIG. 01</span>
-              <span class="mono">SHOURYA, IN PERSON</span>
-            </figcaption>
-          </figure>
-
-          <aside class="about__stack">
-          <div class="stack-row">
-            <span class="mono mono--dim">CURRENTLY</span>
-            <span class="mono">Building product at Intuit</span>
-          </div>
-          <div class="stack-row">
-            <span class="mono mono--dim">PREVIOUSLY</span>
-            <span class="mono">Egen · ZS · Reflexis · OfBusiness</span>
-          </div>
-          <div class="stack-row">
-            <span class="mono mono--dim">STACK</span>
-            <span class="mono">TypeScript · React · Node · Java · AWS</span>
-          </div>
-          <div class="stack-row">
-            <span class="mono mono--dim">INTERESTS</span>
-            <span class="mono">DX · Data infra · Design systems</span>
-          </div>
-          <div class="stack-row">
-            <span class="mono mono--dim">BASED IN</span>
-            <span class="mono">Earth · Remote-friendly</span>
-          </div>
-        </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         03 — EXPERIENCE
-         Brutalist table: YEAR | ROLE | COMPANY | →
-         Hover reveals a one-line description.
-         ============================================================ -->
-    <section id="experience" class="section section--experience">
-      <div class="section__label">03 / WORK</div>
-
-      <header class="section__header">
-        <span class="mono mono--dim">/ 03</span>
-        <h2 class="section__title">EXPERIENCE.</h2>
-      </header>
-
-      <div class="exp-table" role="list">
-        <!-- Table header row -->
-        <div class="exp-row exp-row--head" aria-hidden="true">
-          <span class="mono">YEAR</span>
-          <span class="mono">ROLE</span>
-          <span class="mono">COMPANY</span>
-          <span class="mono"></span>
         </div>
 
-        <!-- Most recent first. Each row is a <button> so it's keyboard-
-             accessible out of the box; JS toggles `.is-open` to expand. -->
-        <button class="exp-row" type="button" aria-expanded="false">
-          <span class="mono exp-row__year">2023 —</span>
-          <span class="exp-row__role">Software Engineer</span>
-          <span class="exp-row__company">Intuit</span>
-          <span class="exp-row__arrow" aria-hidden="true">→</span>
-          <p class="exp-row__note">
-            Building consumer-facing product experiences at scale.
-          </p>
-          <div class="exp-row__detail">
-            <ul class="exp-row__bullets">
-              <li>Shipping consumer-facing product features across web and mobile surfaces.</li>
-              <li>Owning end-to-end delivery — design, code, ship, measure, iterate.</li>
-              <li>Partnering with product and design on a multi-quarter roadmap.</li>
+        <nav class="side-nav" aria-label="Section index">
+            <ul>
+                <li><a href="#hero" data-section="hero">01 / INDEX</a></li>
+                <li>
+                    <a href="#experience" data-section="experience"
+                        >02 / WORK</a
+                    >
+                </li>
+                <li>
+                    <a href="#projects" data-section="projects"
+                        >03 / PROJECTS</a
+                    >
+                </li>
+                <li>
+                    <a href="#contact" data-section="contact">04 / CONTACT</a>
+                </li>
             </ul>
-            <div class="exp-row__tags mono">
-              <span>TYPESCRIPT</span>
-              <span>REACT</span>
-              <span>JAVA</span>
-              <span>GRAPHQL</span>
-              <span>AWS</span>
-            </div>
-          </div>
-        </button>
+        </nav>
 
-        <button class="exp-row" type="button" aria-expanded="false">
-          <span class="mono exp-row__year">2021 — 23</span>
-          <span class="exp-row__role">Software Engineer</span>
-          <span class="exp-row__company">Egen</span>
-          <span class="exp-row__arrow" aria-hidden="true">→</span>
-          <p class="exp-row__note">
-            Industrial IoT — micro-services for railway data streaming.
-          </p>
-          <div class="exp-row__detail">
-            <ul class="exp-row__bullets">
-              <li>Built and operated multi-module micro-services for a railway IoT platform.</li>
-              <li>Designed Kafka-based pipelines ingesting millions of events per day from on-board devices.</li>
-              <li>Wrote alerting and diagnostics tooling that surfaced anomalies to ground ops in near real-time.</li>
-            </ul>
-            <div class="exp-row__tags mono">
-              <span>JAVA</span>
-              <span>SPRING BOOT</span>
-              <span>KAFKA</span>
-              <span>KUBERNETES</span>
-              <span>GCP</span>
-            </div>
-          </div>
-        </button>
+        <div class="grain" aria-hidden="true"></div>
 
-        <button class="exp-row" type="button" aria-expanded="false">
-          <span class="mono exp-row__year">2019 — 21</span>
-          <span class="exp-row__role">Technology Consultant</span>
-          <span class="exp-row__company">ZS</span>
-          <span class="exp-row__arrow" aria-hidden="true">→</span>
-          <p class="exp-row__note">
-            Cloud data warehousing for the pharma / life-sciences space.
-          </p>
-          <div class="exp-row__detail">
-            <ul class="exp-row__bullets">
-              <li>Delivered cloud data-warehouse solutions for pharmaceutical commercial-analytics teams.</li>
-              <li>Built ELT pipelines feeding dashboards that consolidated cross-channel medicinal data.</li>
-              <li>Worked directly with client stakeholders on requirements, modelling and rollout.</li>
-            </ul>
-            <div class="exp-row__tags mono">
-              <span>SNOWFLAKE</span>
-              <span>PYTHON</span>
-              <span>AIRFLOW</span>
-              <span>DBT</span>
-              <span>AWS</span>
-            </div>
-          </div>
-        </button>
+        <main>
+            <section id="hero" class="section section--hero">
+                <div class="section__label">01 / INDEX</div>
 
-        <button class="exp-row" type="button" aria-expanded="false">
-          <span class="mono exp-row__year">2018 — 19</span>
-          <span class="exp-row__role">Software Engineer</span>
-          <span class="exp-row__company">Reflexis Systems</span>
-          <span class="exp-row__arrow" aria-hidden="true">→</span>
-          <p class="exp-row__note">
-            Retail workforce management tooling and integrations.
-          </p>
-          <div class="exp-row__detail">
-            <ul class="exp-row__bullets">
-              <li>Maintained and extended a workforce-management product used by large retail chains.</li>
-              <li>Built integrations between in-store scheduling and external HR / POS systems.</li>
-              <li>Contributed to performance work that cut scheduling-job runtimes.</li>
-            </ul>
-            <div class="exp-row__tags mono">
-              <span>JAVA</span>
-              <span>SPRING</span>
-              <span>ORACLE</span>
-              <span>REST</span>
-            </div>
-          </div>
-        </button>
+                <div class="hero__top">
+                    <span class="mono">PORTFOLIO — 2026 EDITION</span>
+                    <span class="mono">[ SCROLL ↓ ]</span>
+                </div>
 
-        <button class="exp-row" type="button" aria-expanded="false">
-          <span class="mono exp-row__year">2017 — 18</span>
-          <span class="exp-row__role">Software Engineer</span>
-          <span class="exp-row__company">OfBusiness</span>
-          <span class="exp-row__arrow" aria-hidden="true">→</span>
-          <p class="exp-row__note">
-            Tender crawler — daily scraping pipeline across vendor sites.
-          </p>
-          <div class="exp-row__detail">
-            <ul class="exp-row__bullets">
-              <li>First major engineering role on a small team building a B2B procurement platform.</li>
-              <li>Wrote and operated a tender crawler scraping hundreds of vendor and government sites daily.</li>
-              <li>Designed the deduplication and normalisation layer feeding downstream sales tooling.</li>
-            </ul>
-            <div class="exp-row__tags mono">
-              <span>PYTHON</span>
-              <span>SCRAPY</span>
-              <span>MONGODB</span>
-              <span>REDIS</span>
-            </div>
-          </div>
-        </button>
-      </div>
-    </section>
+                <div class="hero__grid">
+                    <div class="hero__left">
+                        <h1 class="hero__name">
+                            SHOURYA<br />PUNJ<span
+                                class="cursor"
+                                aria-hidden="true"
+                                >_</span
+                            >
+                        </h1>
 
-    <!-- ============================================================
-         04 — PROJECTS
-         2-col grid of bordered cards. Each card flips to inverted
-         (black bg, cream text) on hover, with chunky index badge.
-         ============================================================ -->
-    <section id="projects" class="section section--projects">
-      <div class="section__label">04 / PROJECTS</div>
+                        <p class="hero__tagline">
+                            I design and develop experiences that make people's
+                            <em>lives simple.</em>
+                        </p>
 
-      <header class="section__header">
-        <span class="mono mono--dim">/ 04</span>
-        <h2 class="section__title">PROJECTS.</h2>
-      </header>
+                        <div class="hero__bio">
+                            <p class="lead">
+                                I'm a engineer who cares about the seams between
+                                design and engineering — the small details that
+                                make a product feel considered instead of
+                                assembled.
+                            </p>
+                            <p>
+                                Over the last few years I've worked on financial
+                                onboarding and profile platforms, event driven
+                                systems, data platforms, IoT pipelines,
+                                e-commerce systems, and internal tools across
+                                companies large and small. I’m especially
+                                interested in building reliable platforms,
+                                simplifying complex systems, and using AI
+                                assisted engineering to make teams move faster.
+                                I like problems where the constraints are messy
+                                and the user-facing surface still has to feel
+                                calm.
+                            </p>
+                            <p>
+                                Outside of work I try to keep up with the ever
+                                growing tech industry
+                            </p>
+                        </div>
+                    </div>
 
-      <div class="projects-grid">
-        <!-- Project 01 -->
-        <article class="project-card" tabindex="0" role="button" aria-expanded="false">
-          <div class="project-card__badge">/ 01</div>
-          <div class="project-card__tag mono">E-COMMERCE</div>
-          <h3 class="project-card__title">Grocery &amp; Fresh.</h3>
-          <p class="project-card__desc">
-            E-commerce platform supporting online groceries, meat, and
-            fresh-produce shopping for end consumers.
-          </p>
-          <ul class="project-card__stack mono">
-            <li>REACT</li>
-            <li>NODE</li>
-            <li>POSTGRES</li>
-            <li>AWS</li>
-          </ul>
-          <div class="project-card__footer">
-            <span class="mono mono--dim">READ MORE</span>
-            <span class="project-card__arrow" aria-hidden="true">↓</span>
-          </div>
-          <div class="project-card__detail">
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ DETAIL</span>
-              <p>
-                End-to-end consumer e-commerce platform for groceries, meat,
-                and fresh produce. Catalog browse, search, cart, checkout,
-                payments, and order tracking — all built around perishable
-                inventory and same-day delivery windows.
-              </p>
-            </div>
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ OUTCOMES</span>
-              <ul>
-                <li>Sub-second catalog browsing across thousands of SKUs.</li>
-                <li>Same-day fulfilment via third-party logistics integration.</li>
-                <li>Checkout flow optimised for repeat grocery shoppers.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
+                    <div class="hero__right">
+                        <figure class="about__portrait">
+                            <div class="about__portrait-frame">
+                                <img
+                                    src="Shourya Picture.png"
+                                    alt="Portrait of Shourya Punj"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <figcaption class="about__portrait-caption">
+                                <span class="mono mono--dim">/ FIG. 01</span>
+                                <span class="mono">SHOURYA, IN PERSON</span>
+                            </figcaption>
+                        </figure>
 
-        <!-- Project 02 -->
-        <article class="project-card" tabindex="0" role="button" aria-expanded="false">
-          <div class="project-card__badge">/ 02</div>
-          <div class="project-card__tag mono">INDUSTRIAL IoT</div>
-          <h3 class="project-card__title">Railway Streams.</h3>
-          <p class="project-card__desc">
-            Multi-module micro-services application that handles railway
-            train data streaming in from IoT devices in real time.
-          </p>
-          <ul class="project-card__stack mono">
-            <li>JAVA</li>
-            <li>KAFKA</li>
-            <li>SPRING</li>
-            <li>GCP</li>
-          </ul>
-          <div class="project-card__footer">
-            <span class="mono mono--dim">READ MORE</span>
-            <span class="project-card__arrow" aria-hidden="true">↓</span>
-          </div>
-          <div class="project-card__detail">
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ DETAIL</span>
-              <p>
-                Multi-module micro-services ingesting telemetry from on-board
-                IoT sensors across a national railway fleet. A streaming
-                pipeline normalises device data, runs anomaly detection, and
-                pushes alerts to ground operations.
-              </p>
-            </div>
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ OUTCOMES</span>
-              <ul>
-                <li>Millions of events / day with sub-second end-to-end latency.</li>
-                <li>Zero-downtime deployments across all modules.</li>
-                <li>Surfaced predictive-maintenance signals on ops dashboards.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
+                        <aside class="about__stack">
+                            <div class="stack-row">
+                                <span class="mono mono--dim">CURRENTLY</span>
+                                <span class="mono"
+                                    >Making financial onboarding seamless @
+                                    Intuit</span
+                                >
+                            </div>
+                            <div class="stack-row">
+                                <span class="mono mono--dim">PREVIOUSLY</span>
+                                <span class="mono"
+                                    >Egen · ZS · OfBusiness · BITS Pilani
+                                </span>
+                            </div>
+                            <div class="stack-row">
+                                <span class="mono mono--dim">STACK</span>
+                                <span class="mono"
+                                    >Java · Kotlin · Python · JavaScript ·
+                                    Postgresql · AWS · ReactJS</span
+                                >
+                            </div>
+                            <div class="stack-row">
+                                <span class="mono mono--dim">INTERESTS</span>
+                                <span class="mono"
+                                    >Designing & developing distributed systems
+                                    at scale</span
+                                >
+                            </div>
+                            <div class="stack-row">
+                                <span class="mono mono--dim">BASED IN</span>
+                                <span class="mono"
+                                    >Mountain View, California</span
+                                >
+                            </div>
+                        </aside>
+                    </div>
+                </div>
 
-        <!-- Project 03 -->
-        <article class="project-card" tabindex="0" role="button" aria-expanded="false">
-          <div class="project-card__badge">/ 03</div>
-          <div class="project-card__tag mono">DATA WAREHOUSE</div>
-          <h3 class="project-card__title">Pharma Cloud.</h3>
-          <p class="project-card__desc">
-            Cloud-based data warehousing solution for managing medicinal
-            data and showcasing it through simplified dashboards.
-          </p>
-          <ul class="project-card__stack mono">
-            <li>SNOWFLAKE</li>
-            <li>PYTHON</li>
-            <li>AIRFLOW</li>
-            <li>AWS</li>
-          </ul>
-          <div class="project-card__footer">
-            <span class="mono mono--dim">READ MORE</span>
-            <span class="project-card__arrow" aria-hidden="true">↓</span>
-          </div>
-          <div class="project-card__detail">
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ DETAIL</span>
-              <p>
-                Cloud-based data warehouse aggregating commercial and
-                medicinal data for pharma analytics. ELT pipelines feed a
-                set of simplified, role-based dashboards used by client
-                field teams.
-              </p>
-            </div>
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ OUTCOMES</span>
-              <ul>
-                <li>Cut average report turnaround from days to minutes.</li>
-                <li>Unified ~12 source systems into a single governed model.</li>
-                <li>Role-based dashboards for sales, marketing, and medical affairs.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
+                <div class="hero__meta">
+                    <div class="hero__meta-cell">
+                        <span class="mono mono--dim">ROLE</span>
+                        <span class="mono">SOFTWARE ENGINEER</span>
+                    </div>
+                    <div class="hero__meta-cell">
+                        <span class="mono mono--dim">FOCUS</span>
+                        <span class="mono">FULL-STACK / PRODUCT</span>
+                    </div>
+                    <div class="hero__meta-cell">
+                        <span class="mono mono--dim">STATUS</span>
+                        <span class="mono"
+                            ><span class="dot-live"></span> AVAILABLE</span
+                        >
+                    </div>
+                    <div class="hero__meta-cell">
+                        <span class="mono mono--dim">YEAR</span>
+                        <span class="mono">2026</span>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Project 04 -->
-        <article class="project-card" tabindex="0" role="button" aria-expanded="false">
-          <div class="project-card__badge">/ 04</div>
-          <div class="project-card__tag mono">WEB CRAWLER</div>
-          <h3 class="project-card__title">Tender Crawler.</h3>
-          <p class="project-card__desc">
-            A tender crawler application that scrapes data on a daily basis
-            from a long tail of vendor and government tender websites.
-          </p>
-          <ul class="project-card__stack mono">
-            <li>PYTHON</li>
-            <li>SCRAPY</li>
-            <li>REDIS</li>
-            <li>MONGO</li>
-          </ul>
-          <div class="project-card__footer">
-            <span class="mono mono--dim">READ MORE</span>
-            <span class="project-card__arrow" aria-hidden="true">↓</span>
-          </div>
-          <div class="project-card__detail">
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ DETAIL</span>
-              <p>
-                Daily crawler scraping tender postings across hundreds of
-                vendor and government procurement portals. A deduplication
-                and normalisation layer feeds a sales-enablement tool that
-                surfaces relevant opportunities.
-              </p>
-            </div>
-            <div class="project-card__detail-section">
-              <span class="mono mono--dim">/ OUTCOMES</span>
-              <ul>
-                <li>Hundreds of tenders ingested per day with high fidelity.</li>
-                <li>Cut manual sourcing effort by an order of magnitude.</li>
-                <li>Built scraper-resilience tooling to handle frequent site changes.</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+            <section id="experience" class="section section--experience">
+                <div class="section__label">02 / MY JOURNEY</div>
 
-    <!-- ============================================================
-         05 — CONTACT / FOOTER
-         Oversized email, social handles in mono, timestamp.
-         ============================================================ -->
-    <section id="contact" class="section section--contact">
-      <div class="section__label">05 / CONTACT</div>
+                <header class="section__header">
+                    <span class="mono mono--dim">/ 02</span>
+                    <h2 class="section__title">EXPERIENCE & EDUCATION</h2>
+                </header>
 
-      <header class="section__header">
-        <span class="mono mono--dim">/ 05</span>
-        <h2 class="section__title">SAY HELLO.</h2>
-      </header>
+                <div class="exp-table" role="list">
+                    <div class="exp-row exp-row--head" aria-hidden="true">
+                        <span class="mono">YEAR</span>
+                        <span class="mono">ROLE</span>
+                        <span class="mono">COMPANY</span>
+                        <span class="mono"></span>
+                    </div>
 
-      <p class="contact__intro">
-        Working on something interesting, hiring, or just want to trade notes?
-        The fastest way to reach me is email.
-      </p>
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year">Sep 2024 —</span>
+                        <span class="exp-row__role">Software Engineer II</span>
+                        <span class="exp-row__company"
+                            >Intuit Inc<br />Mountain View, CA</span
+                        >
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            Building consumer-facing financial product
+                            experiences at scale for Quickbooks.
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>
+                                    Build and maintain backend services for
+                                    Intuit’s fintech onboarding platform,
+                                    helping match customer financial profiles to
+                                    the right products and services.
+                                </li>
+                                <li>
+                                    Work on Java/Spring Boot microservices and
+                                    legacy backend systems involving PostgreSQL,
+                                    Redis, Kafka, AWS, Kubernetes, Camunda, and
+                                    internal platform integrations
+                                </li>
+                                <li>
+                                    Contribute to production reliability through
+                                    on-call support, debugging, Splunk analysis,
+                                    release ownership, security fixes, and
+                                    operational improvements
+                                </li>
+                                <li>
+                                    Improve engineering productivity by working
+                                    on automation, test reliability, feature
+                                    flag cleanup, migration workflows, and
+                                    system maintainability while navigating
+                                    through 15 year old complex legacy code.
+                                </li>
+                                <li>
+                                    Utilize latest AI tech like Claude Code,
+                                    Cursor & MCP Server integrations to develop
+                                    features 0 to 1 while enhacing features and
+                                    squashing bugs.
+                                </li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>JAVA</span>
+                                <span>POSTGRESQL</span>
+                                <span>PYTHON</span>
+                                <span>REDIS</span>
+                                <span>AWS S3</span>
+                                <span>AWS RDS</span>
+                                <span>AWS SQS</span>
+                                <span>AWS LAMBDA</span>
+                                <span>AWS CLOUDWATCH</span>
+                                <span>AWS CDK</span>
+                                <span>KAFKA</span>
+                                <span>KUBERNETES</span>
+                                <span>ARGO CD</span>
+                                <span>SPLUNK</span>
+                                <span>WAVEFRONT</span>
+                                <span>CLAUDE CODE</span>
+                                <span>CURSOR</span>
+                                <span>KARATE TESTS</span>
+                                <span>CUCUMBER TESTS</span>
+                                <span>JUNIT</span>
+                                <span>MOCKITO</span>
+                            </div>
+                        </div>
+                    </button>
 
-      <a class="contact__email" href="mailto:shouryapunj93@gmail.com">
-        shouryapunj93<span class="contact__at">@</span>gmail.com
-        <span class="contact__arrow" aria-hidden="true">→</span>
-      </a>
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year"
+                            >May 2021 — Aug 2024</span
+                        >
+                        <span class="exp-row__role">Software Engineer</span>
+                        <span class="exp-row__company"
+                            >Egen<br />Chicago, IL</span
+                        >
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            Industrial IoT @ Uptake | E-commerce @ Ahold
+                            Delhaize USA (formerly Peapod Digital Labs)
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>
+                                    Built and operated multi-module
+                                    micro-services for a railway IoT platform
+                                    involving high volume data ingestion at
+                                    Uptake.
+                                </li>
+                                <li>
+                                    Designed Kafka-based pipelines ingesting
+                                    millions of events per day from on-board IoT
+                                    devices.
+                                </li>
+                                <li>
+                                    Contributed to migration efforts including
+                                    Elasticsearch 1.7.x to 7.8 version upgrades
+                                    and monolith-to-microservice modernization
+                                </li>
+                                <li>
+                                    Maintained payment & cart microservices for
+                                    Ahold Delhaize via Kotlin development.
+                                    Involved in migration of multiple api's to
+                                    new versions as part of breaking old
+                                    monolith code into micro services. Reduced
+                                    latency of add to cart functionality by 15%,
+                                    that is, optimized it to be within 1s.
+                                </li>
+                                <li>
+                                    Engineered hazelcast caching for fetching
+                                    payment information to reduce million api
+                                    calls.
+                                </li>
+                                <li>
+                                    Made production releases, participated in
+                                    on-call rotation and incident management
+                                </li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>JAVA</span>
+                                <span>KOTLIN</span>
+                                <span>SPRING BOOT</span>
+                                <span>KAFKA</span>
+                                <span>ELASTICSEARCH</span>
+                                <span>KIBANA</span>
+                                <span>JENKINS</span>
+                                <span>AZURE DEVOPS PIPELINE</span>
+                                <span>AWS</span>
+                                <span>NEW RELIC</span>
+                                <span>HAZELCAST</span>
+                                <span>SPLUNK</span>
+                                <span>DATADOG</span>
+                                <span>DOCKER</span>
+                            </div>
+                        </div>
+                    </button>
 
-      <ul class="contact__socials mono">
-        <li>
-          <a href="https://www.linkedin.com/in/shourya-punj-231a9a149/" target="_blank" rel="noopener noreferrer">
-            LINKEDIN ↗
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
-            GITHUB ↗
-          </a>
-        </li>
-        <li>
-          <a href="https://www.shouryapunj.dev" target="_blank" rel="noopener noreferrer">
-            SHOURYAPUNJ.DEV ↗
-          </a>
-        </li>
-      </ul>
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year"
+                            >Sep 2019 — May 2021</span
+                        >
+                        <span class="exp-row__role">
+                            M.S Computer Science
+                        </span>
+                        <span class="exp-row__company"
+                            >New Jersey Institute of Technology<br />Newark,
+                            NJ</span
+                        >
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            2 year in person Master's Program
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>Cloud Computing</li>
+                                <li>Data Structures & Algorithms</li>
+                                <li>Machine Learning</li>
+                                <li>Advanced Database System Design</li>
+                                <li>Data Analytics with R</li>
+                                <li>Operating Systems</li>
+                                <li>Software Testing and Quality Assurance</li>
+                                <li>Internet and Higher Layer Protocols</li>
+                                <li>Java Programming</li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>JAVA</span>
+                                <span>R</span>
+                                <span>AWS</span>
+                                <span>PYTHON</span>
+                                <span>POSTGRESQL</span>
+                                <span>JUNIT</span>
+                                <span>LINUX</span>
+                            </div>
+                        </div>
+                    </button>
 
-      <footer class="footer">
-        <div class="footer__row">
-          <span class="mono mono--dim">© 2026 SHOURYA PUNJ</span>
-          <span class="mono mono--dim">BUILT WITH HTML · CSS · JS</span>
-          <span class="mono mono--dim">LAST UPDATED 2026-05-28</span>
-        </div>
-      </footer>
-    </section>
-  </main>
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year"
+                            >July 2018 — July 2019</span
+                        >
+                        <span class="exp-row__role"
+                            >Business Technology Analyst</span
+                        >
+                        <span class="exp-row__company">ZS<br />India</span>
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            Cloud data warehousing for the pharma /
+                            life-sciences space.
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>
+                                    Delivered cloud data-warehouse solutions for
+                                    pharmaceutical commercial-analytics teams.
+                                </li>
+                                <li>
+                                    Built ELT pipelines feeding dashboards that
+                                    consolidated cross-channel medicinal data.
+                                </li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>POSTGRESQL</span>
+                                <span>PYTHON</span>
+                                <span>BASH SCRIPTS</span>
+                                <span>ETL</span>
+                                <span>AWS RDS</span>
+                                <span>AWS REDSHIFT</span>
+                                <span>AWS S3</span>
+                            </div>
+                        </div>
+                    </button>
 
-  <script src="script.js" defer></script>
-</body>
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year">Jan - July 2018</span>
+                        <span class="exp-row__role"
+                            >Software Engineer Intern</span
+                        >
+                        <span class="exp-row__company"
+                            >Reflexis Systems<br />India</span
+                        >
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            Retail workforce management tooling and
+                            integrations.
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>
+                                    Maintained and extended a
+                                    workforce-management product used by large
+                                    retail chains.
+                                </li>
+                                <li>
+                                    Built integrations between in-store
+                                    scheduling and external HR / POS systems.
+                                </li>
+                                <li>
+                                    Contributed to performance work that cut
+                                    scheduling-job runtimes.
+                                </li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>JAVA</span>
+                                <span>SPRING FRAMEWORK</span>
+                                <span>ANGULAR</span>
+                                <span>REST</span>
+                                <span>SQL</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year">July — Dec 2017</span>
+                        <span class="exp-row__role"
+                            >Software Engineer Intern</span
+                        >
+                        <span class="exp-row__company"
+                            >OfBusiness<br />India</span
+                        >
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            Tender crawler — daily scraping pipeline across
+                            vendor sites.
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>
+                                    First major engineering role on a small team
+                                    building a B2B procurement platform.
+                                </li>
+                                <li>
+                                    Wrote and operated a tender crawler scraping
+                                    hundreds of vendor and government sites
+                                    daily.
+                                </li>
+                                <li>
+                                    Gained early experience in backend
+                                    automation, data extraction and production
+                                    ready software
+                                </li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>JAVA</span>
+                                <span>SPRING BOOT</span>
+                                <span>POSTGRESQL</span>
+                                <span>GITHUB</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="exp-row" type="button" aria-expanded="false">
+                        <span class="mono exp-row__year"
+                            >Aug 2013 — Jun 2018</span
+                        >
+                        <span class="exp-row__role">
+                            M.Sc. Mathematics
+                            <br />
+                            B.E. Electrical & Electronics
+                        </span>
+                        <span class="exp-row__company"
+                            >BITS Pilani<br />India</span
+                        >
+                        <span class="exp-row__arrow" aria-hidden="true">→</span>
+                        <p class="exp-row__note">
+                            5 year dual degree Program with two 6-month
+                            internship
+                        </p>
+                        <div class="exp-row__detail">
+                            <ul class="exp-row__bullets">
+                                <li>Graphs & Networks</li>
+                                <li>Object Oriented Programming</li>
+                                <li>Computer Programming</li>
+                                <li>Discrete Mathematics</li>
+                                <li>Optimization</li>
+                                <li>Operations Research</li>
+                                <li>Number Theory</li>
+                            </ul>
+                            <div class="exp-row__tags mono">
+                                <span>JAVA</span>
+                                <span>C++</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </section>
+
+            <section id="projects" class="section section--projects">
+                <div class="section__label">03 / PROJECTS</div>
+
+                <header class="section__header">
+                    <span class="mono mono--dim">/ 03</span>
+                    <h2 class="section__title">PROJECTS.</h2>
+                </header>
+
+                <div class="projects-grid">
+                    <article
+                        class="project-card"
+                        tabindex="0"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        <div class="project-card__badge">/ 01</div>
+                        <div class="project-card__stack mono">
+                            <li>WEB APP</li>
+                            <li>
+                                <a
+                                    href="https://github.com/shouryapunj/wedding-timer"
+                                    target="_blank"
+                                    ><u>Github</u></a
+                                >
+                            </li>
+                        </div>
+                        <h3 class="project-card__title">My Wedding App</h3>
+                        <p class="project-card__desc">
+                            A pixel-perfect celebration of love, built for the
+                            big day — April 20, 2026.
+                        </p>
+                        <ul class="project-card__stack mono">
+                            <li>TYPESCRIPT</li>
+                            <li>JS</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>AWS</li>
+                            <li>POSTGRESQL</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span class="mono mono--dim">READ MORE</span>
+                            <span class="project-card__arrow" aria-hidden="true"
+                                >↓</span
+                            >
+                        </div>
+                        <div class="project-card__detail">
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ DETAIL</span>
+                                <p>
+                                    A custom wedding web experience for Shourya
+                                    & Ratna's wedding. Guests can watch the
+                                    countdown tick to zero, share photos and
+                                    videos from the celebration, and relive the
+                                    memories together — all wrapped in a warm,
+                                    game-inspired aesthetic.
+                                </p>
+                            </div>
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ OUTCOMES</span>
+                                <ul>
+                                    <li>Wedding Countdown Timer</li>
+                                    <li>
+                                        Daily wordle & trivia with individual
+                                        score tracking and team groom and team
+                                        bride aggregations
+                                    </li>
+                                    <li>Share photos/videos as memories</li>
+                                    <li>
+                                        Wishes wall where family members send in
+                                        their blessing
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="project-card"
+                        tabindex="0"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        <div class="project-card__badge">/ 02</div>
+                        <div class="project-card__tag mono">AWS</div>
+                        <h3 class="project-card__title">Image Recognition</h3>
+                        <p class="project-card__desc">
+                            Image recognition pipeline in AWS
+                        </p>
+                        <ul class="project-card__stack mono">
+                            <li>AWS</li>
+                            <li>JAVA</li>
+                            <li>AWS S3</li>
+                            <li>AWS SQS</li>
+                            <li>AWS REKOGNITION</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span class="mono mono--dim">READ MORE</span>
+                            <span class="project-card__arrow" aria-hidden="true"
+                                >↓</span
+                            >
+                        </div>
+                        <div class="project-card__detail">
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ DETAIL</span>
+                                <p>
+                                    End-to-end image recognition pipeline built
+                                    using two services. Service one reads the
+                                    input images from an input s3 bucket and
+                                    sends them to a queue. Service two reads
+                                    images from the queue and uses AWS
+                                    Rekognition model to identify objects in the
+                                    images and store them in output bucket.
+                                </p>
+                            </div>
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ OUTCOMES</span>
+                                <ul>
+                                    <li>Classifying objects in the image</li>
+                                    <li>
+                                        Hands on learning experience with AWS
+                                        services.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="project-card"
+                        tabindex="0"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        <div class="project-card__badge">/ 03</div>
+                        <div class="project-card__tag mono">AWS</div>
+                        <h3 class="project-card__title">
+                            Wine Quality ML model
+                        </h3>
+                        <p class="project-card__desc">
+                            ML model trained over AWS EMR using Spark
+                        </p>
+                        <ul class="project-card__stack mono">
+                            <li>PYTHON</li>
+                            <li>AWS EMR</li>
+                            <li>AWS S3</li>
+                            <li>SPARK</li>
+                            <li>DOCKER</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span class="mono mono--dim">READ MORE</span>
+                            <span class="project-card__arrow" aria-hidden="true"
+                                >↓</span
+                            >
+                        </div>
+                        <div class="project-card__detail">
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ DETAIL</span>
+                                <p>
+                                    ML model using Apache Spark’s MLlib
+                                    libraries and trained it over AWS EMR in
+                                    parallel consisting of 1 master and 3
+                                    workers. Saved the model in s3 and then used
+                                    to predict the wine quality on test data.
+                                    Created a container using docker for the ML
+                                    model to simplify deployment and pushed the
+                                    container to docker hub. ML training and
+                                    prediction code was developed in Python
+                                </p>
+                            </div>
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ OUTCOMES</span>
+                                <ul>
+                                    <li>Prediction of wine quality</li>
+                                    <li>
+                                        Exposure to AWS services as Master's
+                                        project
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="project-card"
+                        tabindex="0"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        <div class="project-card__badge">/ 04</div>
+                        <div class="project-card__tag mono">WEB CRAWLER</div>
+                        <h3 class="project-card__title">Tender Crawler</h3>
+                        <p class="project-card__desc">
+                            A tender crawler application that scrapes data on a
+                            daily basis from a long tail of vendor and tender
+                            websites.
+                        </p>
+                        <ul class="project-card__stack mono">
+                            <li>JAVA</li>
+                            <li>SPRING BOOT</li>
+                            <li>POSTGRESQL</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <span class="mono mono--dim">READ MORE</span>
+                            <span class="project-card__arrow" aria-hidden="true"
+                                >↓</span
+                            >
+                        </div>
+                        <div class="project-card__detail">
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ DETAIL</span>
+                                <p>
+                                    Daily crawler scraping tender postings
+                                    across hundreds of vendor and government
+                                    procurement portals. A deduplication and
+                                    normalisation layer feeds a sales-enablement
+                                    tool that surfaces relevant opportunities.
+                                </p>
+                            </div>
+                            <div class="project-card__detail-section">
+                                <span class="mono mono--dim">/ OUTCOMES</span>
+                                <ul>
+                                    <li>
+                                        Hundreds of tenders ingested per day
+                                        with high fidelity.
+                                    </li>
+                                    <li>
+                                        Cut manual sourcing effort by an order
+                                        of magnitude.
+                                    </li>
+                                    <li>
+                                        Built scraper-resilience tooling to
+                                        handle frequent site changes.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="contact" class="section section--contact">
+                <div class="section__label">04 / CONTACT</div>
+
+                <header class="section__header">
+                    <span class="mono mono--dim">/ 04</span>
+                    <h2 class="section__title">SAY HELLO.</h2>
+                </header>
+
+                <p class="contact__intro">
+                    Working on something interesting, hiring, or just want to
+                    trade notes? The fastest way to reach me is email.
+                </p>
+
+                <a class="contact__email" href="mailto:shouryapunj93@gmail.com">
+                    shouryapunj93<span class="contact__at">@</span>gmail.com
+                    <span class="contact__arrow" aria-hidden="true">→</span>
+                </a>
+
+                <ul class="contact__socials mono">
+                    <li>
+                        <a
+                            href="https://www.linkedin.com/in/shourya-punj-231a9a149/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LINKEDIN ↗
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.shouryapunj.dev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            SHOURYAPUNJ.DEV ↗
+                        </a>
+                    </li>
+                </ul>
+
+                <footer class="footer">
+                    <div class="footer__row">
+                        <span class="mono mono--dim">© 2026 SHOURYA PUNJ</span>
+                        <span class="mono mono--dim"
+                            >BUILT WITH HTML · CSS · JS</span
+                        >
+                        <span class="mono mono--dim"
+                            >LAST UPDATED 2026-06-05</span
+                        >
+                    </div>
+                </footer>
+            </section>
+        </main>
+
+        <script src="script.js" defer></script>
+    </body>
 </html>
